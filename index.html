@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução ao JQuery</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Biblioteca JQuery do Google -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+
+    <!-- //3 // Animção -->
+    <style>
+        #square {
+            width: 520px;
+            height: 520px;
+            background-color: red;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        #green {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <h1>Esse é um título H1</h1>
+    <h1>Outro título H1</h1>
+
+    <!-- //2 // Eventos -->
+    <h1 id="sair" style="display:none">Nao saia agora</h1>
+
+
+    <!-- //3 // Animção -->
+    <button id="button1">Fade In</button>
+    <button id="button2">Fade Out</button>
+    <button id="button3">Fade Toggle</button>
+    <button id="button4">Fade To</button>
+    <button id="button5">Slide</button>
+    <button id="button6">Animate</button>
+    <button id="button7">Stop Animate</button>
+    <div id="square"></div>
+
+    <!-- //4 // CallBack -->
+    <div id="green"></div>
+    <button id="button8">Hide</button>
+
+    <!-- //5 // Selecionando Elementos Filhos -->
+    <h1> Minha Lista 1</h1>
+    <ul id="lista1">
+        <li class="item1">Intem 1</li>
+        <li class="item2">Intem 2</li>
+        <li class="item3">Intem 3</li>
+        <li class="item4">Intem 4</li>
+        <li class="item5">Intem 5</li>
+    </ul>
+    <h1> Minha Lista 2</h1>
+    <ul id="lista2">
+        <li class="item1">Intem 1</li>
+        <li class="item2">Intem 2</li>
+        <li class="item3">Intem 3</li>
+        <li class="item4">Intem 4</li>
+        <li class="item5">Intem 5</li>
+    </ul>
+    <button id="button9">Hide Item2</button>
+    <script src="./script.js"></script>
+
+
+    <script>
+
+        //1 // seletor do JQquery $()
+        console.log($("h1"));
+        $("elemento").hide();//elemento podendo ser uma "#"(quando é um Id) ""."(quando é uma class) "h1"(nome puro)
+        //    $.noConflict();  trocar o $ para JQuery
+        jQuery(".titulo").show();
+
+        //
+
+        //2 // Eventos
+        $(document).mouseleave(() => {
+            console.log("Mouse Leave")
+            $("#sair").show();
+        })
+
+        //
+
+        //3 // Animção
+        $("#button1").click(() => {
+            $("#square").fadeIn(3000);//3000 =  3segundo
+        })
+        $("#button2").click(() => {
+            $("#square").fadeOut("fast");//slow & fast
+        })
+        $("#button3").click(() => {
+            $("#square").fadeToggle(2000);//fade (show & hide)
+        })
+        $("#button4").click(() => {
+            $("#square").fadeTo(2000, 0.6);//opacidade 0.6 
+        })
+        $("#button5").click(() => {
+            $("#square").slideToggle();//slideUp & slideDown & slideToggle
+        })
+        $("#button6").click(() => {
+            $("#square").animate({ // referencia da animacao
+                width: 2000,
+                height: 200
+            }, 2000); // tempo de animacao 
+        })
+        $("#button7").click(() => {
+            $("#square").stop();
+        })
+
+        //
+
+        //4 // CallBack
+        function callBack() {
+            console.log("Green Escondido")
+        }
+
+        $("#button8").click(() => {
+            $("#green").hide(2000, function callBack2() {
+                $("#square").show(2000);
+                callBack();
+
+            })
+        })
+
+        //5 // Selecionando Elementos Filhos
+        //Não deve ser feito
+        // $(".item2").hide();  Apagara "Intem2" da Lista1 e Lista2
+        // $("#Lista1 > .item2").hide(); Usar o > pra indicar que quer os descentendes
+        //Como deve ser feito com a funcao "find"
+          
+            // $("#button9").click(() => {
+            //     let lista1 = $("#lista1");
+            //     lista1.find(".intem2").hide()
+            // })
+
+        // lista1.find(".item2").hide();
+         let lista1 = $("#lista1");
+         $("#button9").click(() => {
+         lista1.find(".item2").hide();
+        })
+
+        
+        
+
+    </script>
+</body>
+
+</html>
