@@ -55,30 +55,43 @@
     <div id="green"></div>
     <button id="button8">Hide</button>
 
-    <!-- //5 // Selecionando Elementos Filhos -->
+    <!-- //5 // Selecionando elementos filhos -->
     <h1> Minha Lista 1</h1>
     <ul id="lista1">
-        <li class="item1">Intem 1</li>
-        <li class="item2">Intem 2</li>
-        <li class="item3">Intem 3</li>
-        <li class="item4">Intem 4</li>
-        <li class="item5">Intem 5</li>
+        <li class="item1">Item 1</li>
+        <li class="item2">Item 2</li>
+        <li class="item3">Item 3</li>
+        <li class="item4">Item 4</li>
+        <li class="item5">Item 5</li>
     </ul>
     <h1> Minha Lista 2</h1>
     <ul id="lista2">
-        <li class="item1">Intem 1</li>
-        <li class="item2">Intem 2</li>
-        <li class="item3">Intem 3</li>
-        <li class="item4">Intem 4</li>
-        <li class="item5">Intem 5</li>
+        <li class="item1">Item 1</li>
+        <li class="item2">Item 2</li>
+        <li class="item3">Item 3</li>
+        <li class="item4">Item 4</li>
+        <li class="item5">Item 5</li>
     </ul>
     <button id="button9">Hide Item2</button>
+
+    <!-- //6 // Lendo o conteúdo e características dos elementos -->
+    <input id="novo" name="novo" value ="Novo Item">
+    <button id="button10">.text</button>
+    <button id="button11">.html</button>
+    <button id="button12">.val</button>
+    <button id="button13">.attr</button>
+
+    <!-- //7 // Selecionando elementos por atributos -->
+    <h1> Minha Lista 3</h1>
+    <ul id="lista3">
+        <li key="1" class="item1">Item 1</li>
+        <li key="2" class="item2">Item 2</li>
+        <li key="3" class="item3">Item 3</li>
+
     <script src="./script.js"></script>
-
-
     <script>
 
-        //1 // seletor do JQquery $()
+        //1 // Seletor do JQquery $()
         console.log($("h1"));
         $("elemento").hide();//elemento podendo ser uma "#"(quando é um Id) ""."(quando é uma class) "h1"(nome puro)
         //    $.noConflict();  trocar o $ para JQuery
@@ -126,7 +139,6 @@
         function callBack() {
             console.log("Green Escondido")
         }
-
         $("#button8").click(() => {
             $("#green").hide(2000, function callBack2() {
                 $("#square").show(2000);
@@ -135,27 +147,50 @@
             })
         })
 
-        //5 // Selecionando Elementos Filhos
+        //
+
+        //5 // Selecionando elementos filhos
+
         //Não deve ser feito
         // $(".item2").hide();  Apagara "Intem2" da Lista1 e Lista2
         // $("#Lista1 > .item2").hide(); Usar o > pra indicar que quer os descentendes
+        
         //Como deve ser feito com a funcao "find"
-          
-            // $("#button9").click(() => {
-            //     let lista1 = $("#lista1");
-            //     lista1.find(".intem2").hide()
-            // })
-
-        // lista1.find(".item2").hide();
          let lista1 = $("#lista1");
          $("#button9").click(() => {
-         lista1.find(".item2").hide();
-        })
-
+         lista1.find(".item2").hide()}) // Usando o .find pra encotrar os ELementos Filhos
+        console.log(lista1.children()) // children so ê o primeiro nivel o find vai em todos os niveis
         
+        //
         
+        //6 // Lendo o conteúdo e características dos elementos
+        // Como pegar um conteúdo
+        $("#button10").click(() => {
+        console.log($("#lista1").text())})
+        // Como pegar o html
+        $("#button11").click(() => {
+        console.log($("#lista1").html())})
+        // Como pegar o valor
+        $("#button12").click(() => {
+        console.log($("#novo").val())})
+        // Como pegar por atributo
+        $("#button13").click(() => {
+        console.log($("#novo").attr("name"))})
 
-    </script>
+        //
+
+        //7 // Selecionando elementos por atributos
+        $("[key = 2]")
+        // Removento  
+        $("li").remove("[key = 1] , [key = 3]")
+        // Inserindo 
+         let lista3 = $("#lista3")
+        lista3.append("<li key='3' class='item3'>Item 3</li>") // encrementa na ultima linha (dentro da div lista3)
+        lista3.prepend("<li key='1' class='item1'>Item 1</li>") // encrementa na primeira linha (dentro da div lista3)
+        lista3.before("Usando before", "(antes da div)") // encrementa na primeira linha (antes da div lista3)
+        lista3.after("Usando after", "(depois da div)") // encrementa na primeira linha (depois da div lista3)
+  
+  </script>
 </body>
 
 </html>
